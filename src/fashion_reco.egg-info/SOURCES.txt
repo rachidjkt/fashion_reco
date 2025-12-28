@@ -1,0 +1,8 @@
+pyproject.toml
+src/fashion_reco/__init__.py
+src/fashion_reco/config.py
+src/fashion_reco/healthcheck.py
+src/fashion_reco.egg-info/PKG-INFO
+src/fashion_reco.egg-info/SOURCES.txt
+src/fashion_reco.egg-info/dependency_links.txt
+src/fashion_reco.egg-info/top_level.txt
