@@ -24,7 +24,7 @@ class TrainConfig:
     embeddings_path: Path = DATA_DIR / "processed" / "embeddings.npy"
     out_dir: Path = DATA_DIR / "processed" / "artifacts"
 
-    epochs: int = 5
+    epochs: int = 10
     batch_size: int = 256           # number of outfits per batch
     lr: float = 1e-3
     weight_decay: float = 1e-4
@@ -219,13 +219,7 @@ def main():
 
         if va["acc"] > best_val:
             best_val = va["acc"]
-            torch.save(
-                {
-                    "model_state": model.state_dict(),
-                    "config": cfg.__dict__,
-                },
-                best_path,
-            )
+            torch.save(model.state_dict(), best_path)
             print(f"  saved best -> {best_path} (val acc {best_val:.4f})")
 
     print("Done.")
