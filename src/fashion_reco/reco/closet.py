@@ -63,10 +63,14 @@ def save_embeddings(E: np.ndarray):
 
 def rebuild_closet_embeddings(embedder: CLIPImageEmbedder) -> tuple[list[dict], np.ndarray]:
     """
-    Rebuild embeddings from whatever is in data/user_closet/images.
+    Rebuild embeddings from data/user_closet/images.
+    Keeps existing category assignments by filename if present.
     """
     p = get_closet_paths()
     ensure_closet_dirs()
+
+    old = load_index()
+    old_cat = {it.get("filename"): it.get("category", "other") for it in old}
 
     items = []
     imgs = []
@@ -78,7 +82,14 @@ def rebuild_closet_embeddings(embedder: CLIPImageEmbedder) -> tuple[list[dict], 
             im = Image.open(fp).convert("RGB")
         except Exception:
             continue
-        items.append({"filename": fp.name, "path": str(fp)})
+
+        items.append(
+            {
+                "filename": fp.name,
+                "path": str(fp),
+                "category": old_cat.get(fp.name, "other"),
+            }
+        )
         imgs.append(im)
 
     if not imgs:

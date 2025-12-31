@@ -1,15 +1,24 @@
-from typing import List, Dict, Optional
+from __future__ import annotations
+from typing import Iterable, Optional,List, Dict, Optional
 
 
 def filter_by_category(
-    candidate_indices: List[int],
-    item_categories: Dict[int, str],
-    allowed: Optional[List[str]],
-) -> List[int]:
-    if allowed is None:
-        return candidate_indices
+    candidate_indices: Iterable[int],
+    item_categories: dict[int, str],
+    allowed: Optional[list[str]],
+) -> list[int]:
+    """
+    If allowed is None/empty -> no filtering.
+    """
+    if not allowed:
+        return list(candidate_indices)
+
     allowed_set = set(allowed)
-    return [i for i in candidate_indices if item_categories.get(i) in allowed_set]
+    out = []
+    for i in candidate_indices:
+        if item_categories.get(i) in allowed_set:
+            out.append(i)
+    return out
 
 
 def dedupe_by_category(

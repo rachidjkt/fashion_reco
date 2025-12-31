@@ -1,15 +1,101 @@
-# virtual env
+########################################
+# Python / Virtual Environments
+########################################
 .venv/
+venv/
+env/
 
-# python build artifacts
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.egg-info/
-dist/
-build/
+*.so
 
-# datasets (never commit)
-data/
+########################################
+# Build / Packaging
+########################################
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+########################################
+# OS / Editor noise
+########################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+########################################
+# Streamlit
+########################################
+.streamlit/secrets.toml
+.streamlit/.cache
+
+########################################
+# Logs / temp
+########################################
+*.log
+*.tmp
+
+########################################
+# DATA (never commit raw or generated data)
+########################################
+data/*
 !data/.gitkeep
+
+# raw datasets
+data/raw/*
+!data/raw/.gitkeep
+
+# processed artifacts
+data/processed/*
+!data/processed/.gitkeep
+
+# model artifacts
+data/processed/artifacts/*
+!data/processed/artifacts/.gitkeep
+
+########################################
+# Embeddings & Large Arrays
+########################################
+*.npy
+*.npz
+*.memmap
+
+########################################
+# Model checkpoints
+########################################
+*.pt
+*.pth
+*.ckpt
+
+########################################
+# User closet (personal images)
+########################################
+data/user_closet/*
+!data/user_closet/.gitkeep
+
+########################################
+# Kaggle / Downloads
+########################################
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+########################################
+# Jupyter (if any)
+########################################
+.ipynb_checkpoints/
+
+########################################
+# Secrets / Credentials
+########################################
+.env
+.env.*
